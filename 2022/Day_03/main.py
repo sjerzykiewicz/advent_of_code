@@ -16,7 +16,7 @@ def main():
         sum += calc_value(common_char)
     result.append(sum)
 
-    # Part 2s
+    # Part 2
     sum = 0
     for i in range(0, len(lines) - 2, 3):
         common_char = "".join(set(lines[i]) & set(lines[i + 1]) & set(lines[i + 2]))
