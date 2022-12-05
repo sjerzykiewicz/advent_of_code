@@ -16,7 +16,7 @@ def main():
 
     result.append(sum)
 
-    # Part 2s
+    # Part 2
     sum = 0
     for line in lines:
         elf_1, elf_2 = line.split(",", 2)
