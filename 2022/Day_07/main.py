@@ -4,10 +4,10 @@ class File:
         self.parent = parent
         self.size = size
         self.type = type
-        self.sons = []
+        self.children = []
 
-    def addSon(self, son):
-        self.sons.append(son)
+    def addChild(self, child):
+        self.children.append(child)
 
 
 def main():
@@ -23,7 +23,7 @@ def main():
     currentDir = File(None, None, None, None)
     new = File("/", currentDir, 0, "dir")
     tree.append(new)
-    currentDir.addSon(new)
+    currentDir.addChild(new)
     for line in lines:
         if line[0] == "$":
             if len(line.split(" ")) == 3:
@@ -31,7 +31,7 @@ def main():
                 if dir == "..":
                     currentDir = currentDir.parent
                 else:
-                    currentDir = [x for x in currentDir.sons if x.name == dir][0]
+                    currentDir = [x for x in currentDir.children if x.name == dir][0]
             else:
                 continue
         else:
@@ -39,7 +39,7 @@ def main():
             if info == "dir":
                 new = File(name, currentDir, 0, "dir")
                 tree.append(new)
-                currentDir.addSon(new)
+                currentDir.addChild(new)
             else:
                 new = File(name, currentDir, int(info), "file")
                 tree.append(new)
@@ -47,7 +47,7 @@ def main():
                 while par.parent != None:
                     par.size += int(info)
                     par = par.parent
-                currentDir.addSon(new)
+                currentDir.addChild(new)
 
     size_sum = 0
     for file in tree:
