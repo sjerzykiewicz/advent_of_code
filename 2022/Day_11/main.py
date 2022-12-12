@@ -46,7 +46,6 @@ def monkey_business(monkeys, rounds, worried=False):
 def main():
     lines = []
     with open("input.txt", "r") as f:
-        i = 0
         for line in f:
             lines.append(line.strip("\n"))
 
