@@ -37,7 +37,7 @@ def BFS(heightmap, start, end):
 
 def main():
     heightmap = []
-    with open(r"input.txt", "r") as f:
+    with open("input.txt", "r") as f:
         for line in f:
             line = [x for x in line.strip("\n")]
             heightmap.append(line)
