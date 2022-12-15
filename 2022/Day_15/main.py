@@ -32,6 +32,30 @@ def part_1(sensors, beacons):
     return len(not_a_beacons.difference(beacons))
 
 
+def part_2(sensors):
+    decreasing_lines = []
+    increasing_lines = []
+    for sensor in sensors:
+        x, y = sensor.pos
+        decreasing_lines.append(x + y + sensor.beacon_dist)
+        decreasing_lines.append(x + y - sensor.beacon_dist)
+        increasing_lines.append(x - y + sensor.beacon_dist)
+        increasing_lines.append(x - y - sensor.beacon_dist)
+
+    for i in range(len(decreasing_lines)):
+        for j in range(i + 1, len(increasing_lines)):
+            a, b = decreasing_lines[i], decreasing_lines[j]
+            if abs(a - b) == 2:
+                dec = min(a, b) + 1
+
+            a, b = increasing_lines[i], increasing_lines[j]
+            if abs(a - b) == 2:
+                inc = min(a, b) + 1
+
+    x, y = (inc + dec) // 2, (dec - inc) // 2
+    return x * 4000000 + y
+
+
 def main():
     sensors = []
     pattern = re.compile("^.=.+$")
@@ -56,6 +80,7 @@ def main():
     result.append(part_1(sensors, beacons))
 
     # Part 2
+    result.append(part_2(sensors))
 
     with open("output.txt", "w") as f:
         for i in result:
