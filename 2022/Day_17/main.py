@@ -100,11 +100,11 @@ def main():
     result.append(get_height(rocks, jet_of_gas, 2022))
 
     # Part 2
-    # Found cycles in 'tetris' like this 0 (rock id) 4612 (jet id) [(805, 1316), (2500, 3987)]
+    # Found cycles between rock types and jet ids in 'tetris' like this: 0 (rock id) 4612 (jet id) [(805, 1316), (2500, 3987)]
     # 1,000,000,000,000 - 2500 = 999,999,997,500
     # 999,999,997,500 / (2500 - 805) = 589,970,500
     # 3987 + 589,970,500 * (3987 - 1316) = 1,575,811,209,487
-    # Height after 10^12 rocks 1,575,811,209,487 
+    # Height after 10^12 rocks 1,575,811,209,487
 
     with open("output.txt", "w") as f:
         for i in result:
