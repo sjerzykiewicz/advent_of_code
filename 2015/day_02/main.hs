@@ -5,30 +5,30 @@ main :: IO ()
 main = do
   fileHandle <- openFile "input.txt" ReadMode
   contents <- hGetContents fileHandle
-  putStrLn ("Part One: " ++ show (get_total_wraping_paper (lines contents)))
-  putStrLn ("Part Two: " ++ show (get_total_ribbon_length (lines contents)))
+  putStrLn ("Part One: " ++ show (getTotalWrapingPaper (lines contents)))
+  putStrLn ("Part Two: " ++ show (getTotalRibbonLength (lines contents)))
   hClose fileHandle
 
-get_total_wraping_paper :: [String] -> Int
-get_total_wraping_paper = sum . map get_wrapping_paper
+getTotalWrapingPaper :: [String] -> Int
+getTotalWrapingPaper = sum . map getWrappingPaper
 
-get_wrapping_paper :: String -> Int
-get_wrapping_paper = get_wrapping_paper' . map read . wordsWhen (== 'x')
+getWrappingPaper :: String -> Int
+getWrappingPaper = getWrappingPaper' . map read . wordsWhen (== 'x')
 
-get_wrapping_paper' :: [Int] -> Int
-get_wrapping_paper' [l, w, h] = (2 * a) + (2 * b) + (2 * c) + minimum [a, b, c]
+getWrappingPaper' :: [Int] -> Int
+getWrappingPaper' [l, w, h] = (2 * a) + (2 * b) + (2 * c) + minimum [a, b, c]
   where a = l * w
         b = w * h
         c = h * l
 
-get_total_ribbon_length :: [String] -> Int
-get_total_ribbon_length = sum . map get_ribbon_length
+getTotalRibbonLength :: [String] -> Int
+getTotalRibbonLength = sum . map getRibbonLength
 
-get_ribbon_length :: String -> Int
-get_ribbon_length = get_ribbon_length' . map read . wordsWhen (== 'x')
+getRibbonLength :: String -> Int
+getRibbonLength = getRibbonLength' . map read . wordsWhen (== 'x')
 
-get_ribbon_length' :: [Int] -> Int
-get_ribbon_length' [l, w, h] = (2 * a) + (2 * b) + l * w * h
+getRibbonLength' :: [Int] -> Int
+getRibbonLength' [l, w, h] = (2 * a) + (2 * b) + l * w * h
   where a = minimum [l, w, h]
         b = minimum (delete a [l, w, h])
 
