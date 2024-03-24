@@ -1,5 +1,4 @@
 import System.IO
-import Text.ParserCombinators.ReadP (count)
 
 main :: IO ()
 main = do
